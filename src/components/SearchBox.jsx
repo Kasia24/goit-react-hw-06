@@ -11,12 +11,12 @@ const SearchBox = () => {
   };
 
   return (
-    <input
-      type="text"
-      value={filter}
-      onChange={handleChange}
-      placeholder="Search contacts"
-    />
+    <div>
+      <label>
+        Find contacts by name
+        <input type="text" value={filter} onChange={handleChange} />
+      </label>
+    </div>
   );
 };
 
