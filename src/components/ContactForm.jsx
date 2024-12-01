@@ -1,36 +1,31 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addContact } from "..//components/contactsSlice";
+import { nanoid } from "nanoid";
 
 const ContactForm = () => {
-  const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name || !number) return;
-    dispatch(addContact({ id: Date.now().toString(), name, number }));
-    setName("");
-    setNumber("");
+    const form = e.target;
+    const name = form.elements.name.value;
+    const number = form.elements.number.value;
+
+    dispatch(addContact({ id: nanoid(), name, number }));
+    form.reset();
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder="Name"
-        required
-      />
-      <input
-        type="tel"
-        value={number}
-        onChange={(e) => setNumber(e.target.value)}
-        placeholder="Number"
-        required
-      />
+      <label>
+        Name
+        <input type="text" name="name" required />
+      </label>
+      <label>
+        Number
+        <input type="text" name="number" required />
+      </label>
       <button type="submit">Add Contact</button>
     </form>
   );
