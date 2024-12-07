@@ -18,16 +18,18 @@ const ContactForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
+    <form onSubmit={handleSubmit} className="classForm">
+      <label className="classLabel">
         Name
-        <input type="text" name="name" required />
+        <input type="text" name="name" required className="classField" />
       </label>
-      <label>
+      <label className="classLabel">
         Number
-        <input type="text" name="number" required />
+        <input type="text" name="number" required className="classField" />
       </label>
-      <button type="submit">Add Contact</button>
+      <button type="submit" className="classBtn">
+        Add Contact
+      </button>
     </form>
   );
 };
